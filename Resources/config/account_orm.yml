@@ -1,0 +1,21 @@
+parameters:
+    xidea_account.account.repository.default.class: Xidea\Bundle\AccountBundle\Doctrine\ORM\Repository\AccountRepository
+    xidea_account.account.loader.default.class: Xidea\Bundle\AccountBundle\Doctrine\ORM\Loader\AccountLoader
+    xidea_account.account.manager.default.class: Xidea\Bundle\AccountBundle\Doctrine\ORM\Manager\AccountManager
+  
+services:
+    xidea_account.account.repository.default:
+        class: %xidea_account.account.repository.default.class%
+        factory_service: doctrine.orm.entity_manager
+        factory_method: getRepository
+        arguments:
+            - %xidea_account.account.class%
+    xidea_account.account.loader.default:
+        class: %xidea_account.account.loader.default.class%
+        arguments:
+            - @xidea_account.account.repository.default
+    xidea_account.account.manager.default:
+        class: %xidea_account.account.manager.default.class%
+        arguments:
+            - @doctrine.orm.entity_manager
+            - @event_dispatcher

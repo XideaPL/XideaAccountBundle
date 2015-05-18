@@ -1,0 +1,45 @@
+{
+    "name": "xideapl/account-bundle",
+    "type": "symfony-bundle",
+    "description": "Symfony XideaAccountBundle",
+    "keywords": [],
+    "homepage": "http://xidea.pl",
+    "authors": [
+        {
+            "name": "Artur Pszczółka",
+            "email": "artur.pszczolka@xidea.pl"
+        }
+    ],
+    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "url": "https://github.com/XideaPL/Account.git",
+            "type": "git"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "symfony/symfony": "2.6.*",
+        "twig/twig": "~1.12",
+        "xideapl/account": "dev-master@dev",
+        "xideapl/base-bundle": "dev-master@dev"
+    },
+    "require-dev": {
+        "doctrine/orm": "*",
+        "doctrine/doctrine-bundle": "*",
+        "doctrine/doctrine-fixtures-bundle": "dev-master",
+        "doctrine/data-fixtures": "dev-master",
+        "doctrine/doctrine-migrations-bundle": "dev-master",
+        "doctrine/migrations": "dev-master",
+        "xideapl/user-bundle": "dev-master@dev"
+    },
+    "autoload": {
+        "psr-0": { "Xidea\\Bundle\\AccountBundle": "" }
+    },
+    "target-dir": "Xidea/Bundle/AccountBundle",
+	"extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}

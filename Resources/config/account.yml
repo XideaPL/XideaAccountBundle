@@ -1,0 +1,20 @@
+parameters:
+    xidea_account.account.configuration.default.class: Xidea\Bundle\BaseBundle\Configuration
+    xidea_account.account.factory.default.class: Xidea\Component\Base\Factory\ModelFactory
+    xidea_account.account.template.configuration.default.class: Xidea\Bundle\BaseBundle\TemplateConfiguration
+  
+services:
+    xidea_account.account.configuration.default:
+        class: %xidea_account.account.configuration.default.class%
+        arguments:
+            - @xidea_account.account.template.configuration
+    xidea_account.account.template.configuration.default:
+        class: %xidea_account.account.template.configuration.default.class%
+        arguments:
+            - %xidea_account.account.template.namespace%
+            - %xidea_account.account.template.templates%
+            - %xidea_account.account.template.engine%
+    xidea_account.account.factory.default:
+        class: %xidea_account.account.factory.default.class%
+        arguments:
+            - %xidea_account.account.class%

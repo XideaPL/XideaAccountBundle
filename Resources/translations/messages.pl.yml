@@ -1,0 +1,17 @@
+account:
+    label: Konto
+    name: Nazwa
+
+account_form:
+    create:
+        submit: Utwórz
+        
+account_action:
+    list:
+        title: Konta
+    show:
+        title: %account_name%
+        details:
+            title: Szczegóły konta
+    create:
+        title: Nowe konto

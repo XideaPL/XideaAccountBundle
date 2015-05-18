@@ -1,0 +1,45 @@
+{% extends 'XideaAccountBundle::main.html.twig' %}
+{% block xidea_account_header_title %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">{{ 'account_action.list.title'|trans }}</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+{% endblock %}
+{% block xidea_account_main %}
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    {{ 'account_action.list.title'|trans }}
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>{{ 'account.name'|trans }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for model in models %}
+                                    <tr>
+                                        <td>{{ model.id }}</td>
+                                        <td>{{ model.name }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.table-responsive -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+    </div>
+{% endblock %}
