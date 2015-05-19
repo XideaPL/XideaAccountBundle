@@ -39,12 +39,16 @@ class LoadAccountData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        $data = $this->loadData();
-
-        $accountManager = $this->container->get('xidea_account.account.manager');
+        $reflectionClass = new \ReflectionClass($this->container->getParameter('xidea_account.account.class'));
         
-        foreach($data as $account) {
-            $accountManager->save($account);
+        if($reflectionClass->isInstantiable()) {
+            $data = $this->loadData();
+
+            $accountManager = $this->container->get('xidea_account.account.manager');
+
+            foreach($data as $account) {
+                $accountManager->save($account);
+            }
         }
     }
     
@@ -83,9 +87,14 @@ class LoadAccountData extends AbstractFixture implements OrderedFixtureInterface
         $account2->setName('John Doe');
         $this->setReference('account-johndoe', $account2);
         
+        $account3 = $accountFactory->create();
+        $account3->setName('Jane Doe');
+        $this->setReference('account-janedoe', $account3);
+        
         return array(
             $account1,
-            $account2
+            $account2,
+            $account3
         );
     }
  
