@@ -6,12 +6,13 @@ account_form:
     create:
         submit: Utwórz
         
-account_action:
-    list:
+account_list:
         title: Konta
-    show:
-        title: %account_name%
+        
+account_show:
+        title: %name%
         details:
             title: Szczegóły konta
-    create:
+            
+account_create:
         title: Nowe konto
