@@ -23,14 +23,20 @@ class XideaAccountExtension extends AbstractExtension
 
         $loader->load('account.yml');
         $loader->load('account_orm.yml');
-        $loader->load('account_controller.yml');
-        $loader->load('account_form.yml');
+        $loader->load('controller.yml');
+        $loader->load('form.yml');
+        $loader->load('template.yml');
 
         $this->loadAccountSection($config['account'], $container, $loader);
+        
+        if (isset($config['template'])) {
+            $this->loadTemplateSection($this->getAlias(), $config['template'], $container, $loader);
+        }
     }
     
     protected function loadAccountSection(array $config, ContainerBuilder $container, Loader\YamlFileLoader $loader)
     {
+        $container->setParameter('xidea_account.account.code', $config['code']);
         $container->setParameter('xidea_account.account.class', $config['class']);
         $container->setAlias('xidea_account.account.configuration', $config['configuration']);
         $container->setAlias('xidea_account.account.factory', $config['factory']);
@@ -40,24 +46,33 @@ class XideaAccountExtension extends AbstractExtension
         if (!empty($config['form'])) {
             $this->loadAccountFormSection($config['form'], $container, $loader);
         }
-        
-        if(isset($config['template'])) {
-            $this->loadTemplateSection(sprintf('%s.%s', $this->getAlias(), 'account'), $config['template'], $container, $loader);
-        }
     }
     
     protected function loadAccountFormSection(array $config, ContainerBuilder $container, Loader\YamlFileLoader $loader)
     {
-        $container->setAlias('xidea_account.account.form.create.factory', $config['create']['factory']);
-        $container->setAlias('xidea_account.account.form.create.handler', $config['create']['handler']);
+        $container->setAlias('xidea_account.account.form.factory', $config['account']['factory']);
+        $container->setAlias('xidea_account.account.form.handler', $config['account']['handler']);
         
-        $container->setParameter('xidea_account.account.form.create.type', $config['create']['type']);
-        $container->setParameter('xidea_account.account.form.create.name', $config['create']['name']);
-        $container->setParameter('xidea_account.account.form.create.validation_groups', $config['create']['validation_groups']);
+        $container->setParameter('xidea_account.account.form.type', $config['account']['type']);
+        $container->setParameter('xidea_account.account.form.name', $config['account']['name']);
+        $container->setParameter('xidea_account.account.form.validation_groups', $config['account']['validation_groups']);
     }
     
     protected function getConfigurationDirectory()
     {
         return __DIR__.'/../Resources/config';
+    }
+    
+    protected function getDefaultTemplates()
+    {
+        return [
+            'main' => ['namespace' => '', 'path' => 'main'],
+            'account_main' => ['path' => 'main'],
+            'account_list' => ['path' => 'Account/List/list'],
+            'account_show' => ['path' => 'Account/Show/show'],
+            'account_create' => ['path' => 'Account/Create/create'],
+            'account_form' => ['path' => 'Account/Form/form'],
+            'account_form_fields' => ['path' => 'Account/Form/fields']
+        ];
     }
 }

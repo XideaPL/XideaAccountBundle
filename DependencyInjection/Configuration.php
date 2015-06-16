@@ -27,13 +27,14 @@ class Configuration extends AbstractConfiguration
         $rootNode = $treeBuilder->root($this->alias);
         
         $this->addAccountSection($rootNode);
+        $this->addTemplateSection($rootNode);
 
         return $treeBuilder;
     }
     
     public function getDefaultTemplateNamespace()
     {
-        return 'XideaAccountBundle';
+        return '@XideaAccount';
     }
     
     protected function addAccountSection(ArrayNodeDefinition $node)
@@ -43,6 +44,7 @@ class Configuration extends AbstractConfiguration
                 ->arrayNode('account')
                     ->addDefaultsIfNotSet()
                     ->children()
+                        ->scalarNode('code')->defaultValue('xidea_account')->end()
                         ->scalarNode('class')->isRequired()->cannotBeEmpty()->end()
                         ->scalarNode('configuration')->isRequired()->cannotBeEmpty()->end()
                         ->scalarNode('factory')->defaultValue('xidea_account.account.factory.default')->end()
@@ -52,13 +54,13 @@ class Configuration extends AbstractConfiguration
                             ->addDefaultsIfNotSet()
                             ->canBeUnset()
                             ->children()
-                                ->arrayNode('create')
+                                ->arrayNode('account')
                                     ->addDefaultsIfNotSet()
                                     ->children()
-                                        ->scalarNode('factory')->defaultValue('xidea_account.account.form.create.factory.default')->end()
-                                        ->scalarNode('handler')->defaultValue('xidea_account.account.form.create.handler.default')->end()
-                                        ->scalarNode('type')->defaultValue('xidea_account_create')->end()
-                                        ->scalarNode('name')->defaultValue('xidea_account_create_form')->end()
+                                        ->scalarNode('factory')->defaultValue('xidea_account.account.form.factory.default')->end()
+                                        ->scalarNode('handler')->defaultValue('xidea_account.account.form.handler.default')->end()
+                                        ->scalarNode('type')->defaultValue('xidea_account')->end()
+                                        ->scalarNode('name')->defaultValue('xidea_account_form')->end()
                                         ->arrayNode('validation_groups')
                                             ->prototype('scalar')->end()
                                             ->defaultValue(array())
@@ -67,23 +69,16 @@ class Configuration extends AbstractConfiguration
                                 ->end()
                             ->end()
                         ->end()
-                        ->append($this->addTemplateNode($this->getDefaultTemplateNamespace(), $this->getDefaultTemplateEngine(), array(
-                            'list' => array(
-                                'path' => 'Account\List:list'
-                            ),
-                            'show' => array(
-                                'path' => 'Account\Show:show'
-                            ),
-                            'create' => array(
-                                'path' => 'Account\Create:create'
-                            ),
-                            'create_form' => array(
-                                'path' => 'Account\Create:create_form'
-                            )
-                        )))
                     ->end()
                 ->end()
             ->end();
     }
-
+    
+    protected function addTemplateSection(ArrayNodeDefinition $node)
+    {
+        $node
+            ->children()
+                ->append($this->addTemplateNode($this->getDefaultTemplateNamespace(), $this->getDefaultTemplateEngine(), [], true))
+            ->end();
+    }
 }

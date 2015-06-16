@@ -31,6 +31,7 @@ class ShowController extends AbstractShowController
         parent::__construct($configuration);
 
         $this->accountLoader = $accountLoader;
+        $this->showTemplate = 'account_show';
     }
 
     protected function loadModel($id)

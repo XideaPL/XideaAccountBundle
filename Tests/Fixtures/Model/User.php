@@ -9,15 +9,11 @@
 
 namespace Xidea\Bundle\AccountBundle\Tests\Fixtures\Model;
 
-use Xidea\Bundle\UserBundle\Model\AbstractAdvancedUser;
+use Xidea\Bundle\UserBundle\Model\AbstractUser;
 
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
  */
-class User extends AbstractAdvancedUser
+class User extends AbstractUser
 {
-    public function getName()
-    {
-        return $this->getUsername();
-    }
 }

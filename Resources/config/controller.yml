@@ -11,7 +11,7 @@ services:
             - @xidea_account.account.loader
         calls:
             - [setEventDispatcher, [@event_dispatcher]]
-            - [setTemplating, [@templating]]
+            - [setTemplateManager, [@xidea_base.template_manager]]
     xidea_account.controller.show:
         class: %xidea_account.controller.show.class%
         arguments:
@@ -19,15 +19,15 @@ services:
             - @xidea_account.account.loader
         calls:
             - [setEventDispatcher, [@event_dispatcher]]
-            - [setTemplating, [@templating]]
+            - [setTemplateManager, [@xidea_base.template_manager]]
     xidea_account.controller.create:
         class: %xidea_account.controller.create.class%
         arguments:
             - @xidea_account.account.configuration
             - @xidea_account.account.factory
             - @xidea_account.account.manager
-            - @xidea_account.account.form.create.handler
+            - @xidea_account.account.form.handler
         calls:
             - [setEventDispatcher, [@event_dispatcher]]
             - [setRouter, [@router]]
-            - [setTemplating, [@templating]]
+            - [setTemplateManager, [@xidea_base.template_manager]]

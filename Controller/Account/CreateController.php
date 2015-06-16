@@ -40,6 +40,8 @@ class CreateController extends AbstractCreateController
     {
         parent::__construct($configuration, $modelManager, $formHandler);
 
+        $this->createTemplate = 'account_create';
+        $this->createFormTemplate = 'account_create_form';
         $this->accountFactory = $accountFactory;
     }
 
