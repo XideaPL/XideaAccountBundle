@@ -25,13 +25,10 @@ class XideaAccountExtension extends AbstractExtension
         $loader->load('account_orm.yml');
         $loader->load('controller.yml');
         $loader->load('form.yml');
-        $loader->load('template.yml');
 
         $this->loadAccountSection($config['account'], $container, $loader);
-        
-        if (isset($config['template'])) {
-            $this->loadTemplateSection($this->getAlias(), $config['template'], $container, $loader);
-        }
+
+        $this->loadTemplateSection($config, $container, $loader);
     }
     
     protected function loadAccountSection(array $config, ContainerBuilder $container, Loader\YamlFileLoader $loader)
@@ -66,13 +63,12 @@ class XideaAccountExtension extends AbstractExtension
     protected function getDefaultTemplates()
     {
         return [
-            'main' => ['namespace' => '', 'path' => 'main'],
-            'account_main' => ['path' => 'main'],
-            'account_list' => ['path' => 'Account/List/list'],
-            'account_show' => ['path' => 'Account/Show/show'],
-            'account_create' => ['path' => 'Account/Create/create'],
-            'account_form' => ['path' => 'Account/Form/form'],
-            'account_form_fields' => ['path' => 'Account/Form/fields']
+            'account_main' => ['path' => '@XideaAccount/main'],
+            'account_list' => ['path' => '@XideaAccount/Account/List/list'],
+            'account_show' => ['path' => '@XideaAccount/Account/Show/show'],
+            'account_create' => ['path' => '@XideaAccount/Account/Create/create'],
+            'account_form' => ['path' => '@XideaAccount/Account/Form/form'],
+            'account_form_fields' => ['path' => '@XideaAccount/Account/Form/fields']
         ];
     }
 }

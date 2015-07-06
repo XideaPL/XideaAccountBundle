@@ -7,7 +7,6 @@ services:
         class: %xidea_account.account.configuration.default.class%
         arguments:
             - %xidea_account.account.code%
-            - @xidea_account.template.configuration
         tags:
             - { name: xidea_base.configuration }
     xidea_account.account.factory.default:

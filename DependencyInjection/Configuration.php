@@ -32,11 +32,6 @@ class Configuration extends AbstractConfiguration
         return $treeBuilder;
     }
     
-    public function getDefaultTemplateNamespace()
-    {
-        return '@XideaAccount';
-    }
-    
     protected function addAccountSection(ArrayNodeDefinition $node)
     {
         $node
@@ -60,7 +55,7 @@ class Configuration extends AbstractConfiguration
                                         ->scalarNode('factory')->defaultValue('xidea_account.account.form.factory.default')->end()
                                         ->scalarNode('handler')->defaultValue('xidea_account.account.form.handler.default')->end()
                                         ->scalarNode('type')->defaultValue('xidea_account')->end()
-                                        ->scalarNode('name')->defaultValue('xidea_account_form')->end()
+                                        ->scalarNode('name')->defaultValue('account')->end()
                                         ->arrayNode('validation_groups')
                                             ->prototype('scalar')->end()
                                             ->defaultValue(array())
@@ -71,14 +66,6 @@ class Configuration extends AbstractConfiguration
                         ->end()
                     ->end()
                 ->end()
-            ->end();
-    }
-    
-    protected function addTemplateSection(ArrayNodeDefinition $node)
-    {
-        $node
-            ->children()
-                ->append($this->addTemplateNode($this->getDefaultTemplateNamespace(), $this->getDefaultTemplateEngine(), [], true))
             ->end();
     }
 }

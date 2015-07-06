@@ -1,4 +1,4 @@
-{% extends 'XideaAccountBundle::main.html.twig' %}
+{% extends xidea_template('account_main') %}
 {% block bundle_title %}
     <h1 class="page-header">{{ 'account_create.title'|trans }}</h1>
 {% endblock %}
@@ -11,7 +11,7 @@
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
-                    {{ include('XideaAccountBundle:Account/Create:form.html.twig') }}
+                    {{ include(xidea_template('account_form')) }}
                 </div>
                 <!-- /.panel-body -->
             </div>
