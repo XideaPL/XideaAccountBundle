@@ -24,19 +24,27 @@ class ShowController extends AbstractShowController
     /*
      * @var AccountLoaderInterface
      */
-    protected $accountLoader;
+    protected $loader;
 
-    public function __construct(ConfigurationInterface $configuration, AccountLoaderInterface $accountLoader)
+    /**
+     * 
+     * @param ConfigurationInterface $configuration
+     * @param AccountLoaderInterface $loader
+     */
+    public function __construct(ConfigurationInterface $configuration, AccountLoaderInterface $loader)
     {
         parent::__construct($configuration);
 
-        $this->accountLoader = $accountLoader;
+        $this->loader = $loader;
         $this->showTemplate = 'account_show';
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function loadModel($id)
     {
-        $account = $this->accountLoader->load($id);
+        $account = $this->loader->load($id);
 
         if (!$account instanceof AccountInterface) {
             throw new NotFoundHttpException('account.not_found');
@@ -45,6 +53,9 @@ class ShowController extends AbstractShowController
         return $account;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function onPreShow($model, Request $request)
     {
         return;

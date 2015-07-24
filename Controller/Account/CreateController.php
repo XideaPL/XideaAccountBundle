@@ -28,28 +28,35 @@ class CreateController extends AbstractCreateController
     /*
      * @var ModelFactoryInterface
      */
+    protected $factory;
 
-    protected $accountFactory;
-
-    /*
-     * @var AccountManagerInterface
+    /**
+     * 
+     * @param ConfigurationInterface $configuration
+     * @param ModelFactoryInterface $factory
+     * @param AccountManagerInterface $manager
+     * @param FormHandlerInterface $formHandler
      */
-    protected $accountManager;
-
-    public function __construct(ConfigurationInterface $configuration, ModelFactoryInterface $accountFactory, AccountManagerInterface $modelManager, FormHandlerInterface $formHandler)
+    public function __construct(ConfigurationInterface $configuration, ModelFactoryInterface $factory, AccountManagerInterface $manager, FormHandlerInterface $formHandler)
     {
-        parent::__construct($configuration, $modelManager, $formHandler);
+        parent::__construct($configuration, $manager, $formHandler);
 
         $this->createTemplate = 'account_create';
         $this->createFormTemplate = 'account_create_form';
-        $this->accountFactory = $accountFactory;
+        $this->factory = $factory;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function createModel()
     {
-        return $this->accountFactory->create();
+        return $this->factory->create();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function onPreCreate($model, Request $request)
     {
         $this->dispatch(AccountEvents::PRE_CREATE, $event = new GetAccountResponseEvent($model, $request));
@@ -57,6 +64,9 @@ class CreateController extends AbstractCreateController
         return $event->getResponse();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function onCreateSuccess($model, Request $request)
     {
         $this->dispatch(AccountEvents::CREATE_SUCCESS, $event = new GetAccountResponseEvent($model, $request));
@@ -70,6 +80,9 @@ class CreateController extends AbstractCreateController
         return $response;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function onCreateCompleted($model, Request $request, Response $response)
     {
         $this->dispatch(AccountEvents::CREATE_COMPLETED, new FilterAccountResponseEvent($model, $request, $response));

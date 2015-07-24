@@ -9,10 +9,10 @@
 
 namespace Xidea\Bundle\AccountBundle\Doctrine\ORM\Loader;
 
-use Doctrine\ORM\EntityManager,
-    Doctrine\ORM\EntityRepository;
-
-use Xidea\Component\Account\Loader\AccountLoaderInterface;
+use Xidea\Component\Account\Loader\AccountLoaderInterface,
+    Xidea\Bundle\AccountBundle\Doctrine\ORM\Repository\AccountRepositoryInterface;
+use Xidea\Bundle\BaseBundle\ConfigurationInterface,
+    Xidea\Bundle\BaseBundle\Pagination\PaginatorInterface;
 
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
@@ -20,19 +20,32 @@ use Xidea\Component\Account\Loader\AccountLoaderInterface;
 class AccountLoader implements AccountLoaderInterface
 {
     /*
-     * @var EntityRepository
+     * @var AccountRepositoryInterface
      */
-    protected $accountRepository;
+    protected $repository;
+    
+    /*
+     * @var ConfigurationInterface
+     */
+    protected $configuration;
+    
+    /*
+     * @var PaginatorInterface
+     */
+    protected $paginator;
     
     /**
      * Constructs a comment repository.
      *
-     * @param string $class The class
-     * @param EntityManager The entity manager
+     * @param AccountRepositoryInterface $repository The repository
+     * @param ConfigurationInterface $configuration The configuration
+     * @param PaginatorInterface $paginator The paginator
      */
-    public function __construct(EntityRepository $accountRepository)
+    public function __construct(AccountRepositoryInterface $repository, ConfigurationInterface $configuration, PaginatorInterface $paginator)
     {
-        $this->accountRepository = $accountRepository;
+        $this->repository = $repository;
+        $this->configuration = $configuration;
+        $this->paginator = $paginator;
     }
 
     /**
@@ -40,7 +53,7 @@ class AccountLoader implements AccountLoaderInterface
      */
     public function load($id)
     {
-        return $this->accountRepository->find($id);
+        return $this->repository->find($id);
     }
 
     /**
@@ -48,7 +61,7 @@ class AccountLoader implements AccountLoaderInterface
      */
     public function loadAll()
     {
-        return $this->accountRepository->findAll();
+        return $this->repository->findAll();
     }
 
     /*
@@ -56,7 +69,7 @@ class AccountLoader implements AccountLoaderInterface
      */
     public function loadBy(array $criteria, array $orderBy = array(), $limit = null, $offset = null)
     {
-        return $this->accountRepository->findBy($criteria, $orderBy, $limit, $offset);
+        return $this->repository->findBy($criteria, $orderBy, $limit, $offset);
     }
     
     /*
@@ -64,6 +77,16 @@ class AccountLoader implements AccountLoaderInterface
      */
     public function loadOneBy(array $criteria, array $orderBy = array())
     {
-        return $this->accountRepository->findOneBy($criteria, $orderBy);
+        return $this->repository->findOneBy($criteria, $orderBy);
+    }
+    
+    /*
+     * @return PaginationInterface
+     */
+    public function loadByPage($page = 1, $limit = 25)
+    {
+        $qb = $this->repository->findQb();
+        
+        return $this->paginator->paginate($qb, $page, $limit);
     }
 }
