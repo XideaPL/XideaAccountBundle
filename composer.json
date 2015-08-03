@@ -11,6 +11,7 @@
         }
     ],
     "minimum-stability": "dev",
+    "prefer-stable": true,
     "repositories": [
         {
             "url": "https://github.com/XideaPL/Account.git",
@@ -19,14 +20,16 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "symfony/symfony": "2.6.*",
+        "symfony/symfony": "2.7.*",
+        "doctrine/orm": "~2.2,>=2.2.3,<2.5",
+        "doctrine/dbal": "<2.5",
+        "doctrine/doctrine-bundle": "~1.4",
+        "symfony/assetic-bundle": "~2.3",
         "twig/twig": "~1.12",
         "xideapl/account": "dev-master@dev",
         "xideapl/base-bundle": "dev-master@dev"
     },
     "require-dev": {
-        "doctrine/orm": "*",
-        "doctrine/doctrine-bundle": "*",
         "doctrine/doctrine-fixtures-bundle": "dev-master",
         "doctrine/data-fixtures": "dev-master",
         "doctrine/doctrine-migrations-bundle": "dev-master",

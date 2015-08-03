@@ -1,5 +1,6 @@
 Xidea\Component\Account\Model\AbstractAccount:
     type: mappedSuperclass
+    repositoryClass: Xidea\Bundle\AccountBundle\Doctrine\ORM\Repository\AccountRepository
     id:
         id:
             type: integer
