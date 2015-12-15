@@ -11,14 +11,14 @@ namespace Xidea\Bundle\AccountBundle\Doctrine\ORM\Manager;
 
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Doctrine\ORM\EntityManager;
-use Xidea\Component\Base\Doctrine\ORM\Manager\ModelManagerInterface;
-use Xidea\Component\Account\Manager\AccountManagerInterface,
-    Xidea\Component\Account\Model\AccountInterface;
+use Xidea\Base\Model\Manager\Doctrine\ORM\ManagerInterface as ModelManagerInterface;
+use Xidea\Account\ManagerInterface,
+    Xidea\Account\AccountInterface;
 
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
  */
-class AccountManager implements ModelManagerInterface, AccountManagerInterface
+class AccountManager implements ModelManagerInterface, ManagerInterface
 {
     /*
      * @var bool

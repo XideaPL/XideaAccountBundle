@@ -1,6 +1,6 @@
 parameters:
     xidea_account.account.configuration.default.class: Xidea\Bundle\BaseBundle\Configuration
-    xidea_account.account.factory.default.class: Xidea\Component\Base\Factory\ModelFactory
+    xidea_account.account.factory.default.class: Xidea\Base\Model\Factory\DefaultFactory
   
 services:
     xidea_account.account.configuration.default:

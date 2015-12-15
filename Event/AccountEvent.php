@@ -12,7 +12,7 @@ namespace Xidea\Bundle\AccountBundle\Event;
 use Symfony\Component\EventDispatcher\Event,
     Symfony\Component\HttpFoundation\Request;
 
-use Xidea\Component\Account\Model\AccountInterface;
+use Xidea\Account\AccountInterface;
 
 /**
  *

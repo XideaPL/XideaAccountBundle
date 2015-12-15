@@ -9,7 +9,7 @@
 
 namespace Xidea\Bundle\AccountBundle\Tests\Fixtures\Model;
 
-use Xidea\Component\Account\Model\AbstractAccount;
+use Xidea\Account\AbstractAccount;
 
 /**
  * @author Artur Pszczółka <artur.pszczolka@xidea.pl>

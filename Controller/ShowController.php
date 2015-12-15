@@ -7,40 +7,56 @@
  * file that was distributed with this source code.
  */
 
-namespace Xidea\Bundle\AccountBundle\Controller\Account;
+namespace Xidea\Bundle\AccountBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Xidea\Component\Account\Loader\AccountLoaderInterface;
+use Xidea\Account\LoaderInterface;
 use Xidea\Bundle\BaseBundle\ConfigurationInterface,
-    Xidea\Bundle\BaseBundle\Controller\AbstractShowController;
-use Xidea\Component\Account\Model\AccountInterface;
+    Xidea\Bundle\BaseBundle\Controller\AbstractController;
+use Xidea\Account\AccountInterface;
 
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
  */
-class ShowController extends AbstractShowController
+class ShowController extends AbstractController
 {
     /*
-     * @var AccountLoaderInterface
+     * @var LoaderInterface
      */
     protected $loader;
-
+    
     /**
      * 
      * @param ConfigurationInterface $configuration
-     * @param AccountLoaderInterface $loader
+     * @param LoaderInterface $loader
      */
-    public function __construct(ConfigurationInterface $configuration, AccountLoaderInterface $loader)
+    public function __construct(ConfigurationInterface $configuration, LoaderInterface $loader)
     {
         parent::__construct($configuration);
 
         $this->loader = $loader;
-        $this->showTemplate = 'account_show';
+    }
+    
+    /**
+     * 
+     * @param int $id
+     * @param Request $request
+     * @return Response
+     */
+    public function showAction($id, Request $request)
+    {
+        $model = $this->loadModel($id);
+        
+        return $this->render('account_show', array(
+            'model' => $model
+        ));
     }
 
     /**
-     * {@inheritdoc}
+     * @param int $id
+     * 
+     * @return AccountInterface|null
      */
     protected function loadModel($id)
     {
@@ -51,13 +67,5 @@ class ShowController extends AbstractShowController
         }
 
         return $account;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function onPreShow($model, Request $request)
-    {
-        return;
     }
 }

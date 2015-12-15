@@ -9,11 +9,11 @@
 
 namespace Xidea\Bundle\AccountBundle;
 
-use Xidea\Component\Account\AccountEvents as BaseAccountEvents;
+use Xidea\Account\Events;
 
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
  */
-final class AccountEvents extends BaseAccountEvents
+final class AccountEvents extends Events
 {
 }

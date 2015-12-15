@@ -1,7 +1,7 @@
 parameters:
-    xidea_account.controller.list.class: Xidea\Bundle\AccountBundle\Controller\Account\ListController
-    xidea_account.controller.show.class: Xidea\Bundle\AccountBundle\Controller\Account\ShowController
-    xidea_account.controller.create.class: Xidea\Bundle\AccountBundle\Controller\Account\CreateController
+    xidea_account.controller.list.class: Xidea\Bundle\AccountBundle\Controller\ListController
+    xidea_account.controller.show.class: Xidea\Bundle\AccountBundle\Controller\ShowController
+    xidea_account.controller.create.class: Xidea\Bundle\AccountBundle\Controller\CreateController
   
 services:
     xidea_account.controller.list:

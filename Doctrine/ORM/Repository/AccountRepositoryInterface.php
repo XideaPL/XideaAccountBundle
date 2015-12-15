@@ -17,7 +17,7 @@ interface AccountRepositoryInterface
     /*
      * @param int $id
      * 
-     * @return \Xidea\Component\Account\Model\AccountInterface
+     * @return \Xidea\Account\AccountInterface
      */
     function find($id);
     

@@ -1,4 +1,4 @@
-Xidea\Component\Account\Model\AbstractAccount:
+Xidea\Account\AbstractAccount:
     properties:
         name:
             - NotBlank: {}

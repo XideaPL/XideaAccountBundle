@@ -1,4 +1,4 @@
-Xidea\Component\Account\Model\AbstractAccount:
+Xidea\Account\AbstractAccount:
     type: mappedSuperclass
     repositoryClass: Xidea\Bundle\AccountBundle\Doctrine\ORM\Repository\AccountRepository
     id:

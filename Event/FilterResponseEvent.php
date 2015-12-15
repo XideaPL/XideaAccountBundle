@@ -12,13 +12,13 @@ namespace Xidea\Bundle\AccountBundle\Event;
 use Symfony\Component\HttpFoundation\Request,
     Symfony\Component\HttpFoundation\Response;
 
-use Xidea\Component\Account\Model\AccountInterface;
+use Xidea\Account\AccountInterface;
 
 /**
  *
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>
  */
-class FilterAccountResponseEvent extends AccountEvent
+class FilterResponseEvent extends AccountEvent
 {
 
     private $response;

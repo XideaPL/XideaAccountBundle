@@ -8,6 +8,6 @@ class XideaAccountBundle extends AbstractBundle
 {
     protected function getModelNamespace()
     {
-        return 'Xidea\Component\Account\Model';
+        return 'Xidea\Account';
     }
 }
