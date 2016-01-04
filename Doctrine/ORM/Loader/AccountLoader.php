@@ -11,8 +11,8 @@ namespace Xidea\Bundle\AccountBundle\Doctrine\ORM\Loader;
 
 use Xidea\Account\LoaderInterface,
     Xidea\Bundle\AccountBundle\Doctrine\ORM\Repository\AccountRepositoryInterface;
-use Xidea\Bundle\BaseBundle\ConfigurationInterface,
-    Xidea\Bundle\BaseBundle\Pagination\PaginatorInterface;
+use Xidea\Base\ConfigurationInterface,
+    Xidea\Base\Pagination\PaginatorInterface;
 
 /**
  * @author Artur Pszczółka <a.pszczolka@xidea.pl>

@@ -16,4 +16,8 @@ use Xidea\Bundle\UserBundle\Model\AbstractUser;
  */
 class User extends AbstractUser
 {
+    public function __construct()
+    {
+        $this->salt = md5(uniqid(null, true));
+    }
 }

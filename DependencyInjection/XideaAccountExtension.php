@@ -23,8 +23,6 @@ class XideaAccountExtension extends AbstractExtension
 
         $loader->load('account.yml');
         $loader->load('account_orm.yml');
-        $loader->load('controller.yml');
-        $loader->load('form.yml');
 
         $this->loadAccountSection($config['account'], $container, $loader);
 

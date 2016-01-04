@@ -31,9 +31,7 @@
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "dev-master",
-        "doctrine/data-fixtures": "dev-master",
         "doctrine/doctrine-migrations-bundle": "dev-master",
-        "doctrine/migrations": "dev-master",
         "xideapl/user-bundle": "dev-master@dev"
     },
     "autoload": {

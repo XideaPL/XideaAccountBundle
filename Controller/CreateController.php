@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request,
     Symfony\Component\HttpFoundation\Response;
 use Xidea\Base\Model\FactoryInterface as ModelFactoryInterface;
 use Xidea\Account\ManagerInterface;
-use Xidea\Bundle\BaseBundle\ConfigurationInterface,
+use Xidea\Base\ConfigurationInterface,
     Xidea\Bundle\BaseBundle\Controller\AbstractController,
     Xidea\Bundle\BaseBundle\Form\Handler\FormHandlerInterface;
 use Xidea\Bundle\AccountBundle\AccountEvents,
