@@ -11,7 +11,8 @@ namespace Xidea\Bundle\AccountBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 /**
  * Description of RegistrationType
@@ -39,18 +40,18 @@ class AccountType extends AbstractType
                 ->add('name', null, array(
                     'label' => 'account.name'
                 ))
-                ->add('save', 'submit', array('label' => 'account_form.submit'))
+                ->add('save', SubmitType::class, array('label' => 'account_form.submit'))
         ;
     }
-
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    
+    public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => $this->class
-        ));
+        ]);
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'xidea_account';
     }

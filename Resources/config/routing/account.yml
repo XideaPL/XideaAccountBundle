@@ -1,13 +1,13 @@
 xidea_account_list:
-    pattern:  /accounts
+    path:  /accounts
     defaults: { _controller: xidea_account.controller.list:listAction }
  
 xidea_account_show:
-    pattern:  /accounts/{id}
+    path:  /accounts/{id}
     defaults: { _controller: xidea_account.controller.show:showAction }
     requirements:
         id:  \d+
     
 xidea_account_create:
-    pattern:  /accounts/create
+    path:  /accounts/create
     defaults: { _controller: xidea_account.controller.create:createAction }

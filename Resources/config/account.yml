@@ -14,60 +14,60 @@ parameters:
 services:
     #services
     xidea_account.account.configuration.default:
-        class: %xidea_account.account.configuration.default.class%
+        class: '%xidea_account.account.configuration.default.class%'
         arguments:
-            - %xidea_account.account.code%
+            - '%xidea_account.account.code%'
         tags:
             - { name: xidea_base.configuration }
     xidea_account.account.factory.default:
-        class: %xidea_account.account.factory.default.class%
+        class: '%xidea_account.account.factory.default.class%'
         arguments:
-            - %xidea_account.account.class%
+            - '%xidea_account.account.class%'
     #controllers
     xidea_account.controller.list:
-        class: %xidea_account.controller.list.class%
+        class: '%xidea_account.controller.list.class%'
         arguments:
-            - @xidea_account.account.configuration
-            - @xidea_account.account.loader
+            - '@xidea_account.account.configuration'
+            - '@xidea_account.account.loader'
         calls:
-            - [setEventDispatcher, [@event_dispatcher]]
-            - [setTemplateManager, [@xidea_base.template_manager]]
+            - [setEventDispatcher, ['@event_dispatcher']]
+            - [setTemplateManager, ['@xidea_base.template_manager']]
     xidea_account.controller.show:
-        class: %xidea_account.controller.show.class%
+        class: '%xidea_account.controller.show.class%'
         arguments:
-            - @xidea_account.account.configuration
-            - @xidea_account.account.loader
+            - '@xidea_account.account.configuration'
+            - '@xidea_account.account.loader'
         calls:
-            - [setEventDispatcher, [@event_dispatcher]]
-            - [setTemplateManager, [@xidea_base.template_manager]]
+            - [setEventDispatcher, ['@event_dispatcher']]
+            - [setTemplateManager, ['@xidea_base.template_manager']]
     xidea_account.controller.create:
-        class: %xidea_account.controller.create.class%
+        class: '%xidea_account.controller.create.class%'
         arguments:
-            - @xidea_account.account.configuration
-            - @xidea_account.account.factory
-            - @xidea_account.account.manager
-            - @xidea_account.account.form.handler
+            - '@xidea_account.account.configuration'
+            - '@xidea_account.account.factory'
+            - '@xidea_account.account.manager'
+            - '@xidea_account.account.form.handler'
         calls:
-            - [setEventDispatcher, [@event_dispatcher]]
-            - [setRouter, [@router]]
-            - [setTemplateManager, [@xidea_base.template_manager]]
+            - [setEventDispatcher, ['@event_dispatcher']]
+            - [setRouter, ['@router']]
+            - [setTemplateManager, ['@xidea_base.template_manager']]
     #forms
     xidea_account.account.form.type:
-        class: %xidea_account.account.form.type.class%
+        class: '%xidea_account.account.form.type.class%'
         arguments:
-            - %xidea_account.account.class%
+            - '%xidea_account.account.class%'
         tags:
-            - { name: form.type, alias: "xidea_account" }
+            - { name: form.type }
     xidea_account.account.form.factory.default:
-        class: %xidea_account.account.form.factory.default.class%
+        class: '%xidea_account.account.form.factory.default.class%'
         arguments:
-            - @form.factory
-            - %xidea_account.account.form.name%
-            - %xidea_account.account.form.type%
-            - %xidea_account.account.form.validation_groups%
+            - '@form.factory'
+            - '%xidea_account.account.form.name%'
+            - '%xidea_account.account.form.type%'
+            - '%xidea_account.account.form.validation_groups%'
     xidea_account.account.form.handler.default:
-        class: %xidea_account.account.form.handler.default.class%
+        class: '%xidea_account.account.form.handler.default.class%'
         arguments:
-            - @xidea_account.account.form.factory
-            - @event_dispatcher
+            - '@xidea_account.account.form.factory'
+            - '@event_dispatcher'
     
