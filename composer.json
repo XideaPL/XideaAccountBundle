@@ -36,8 +36,7 @@
     "autoload": {
         "psr-4": { "Xidea\\Bundle\\AccountBundle\\": "" }
     },
-    "target-dir": "Xidea/Bundle/AccountBundle",
-	"extra": {
+    "extra": {
         "branch-alias": {
             "dev-master": "1.0-dev"
         }
